@@ -1,5 +1,5 @@
 # Bisnajo
-C'est un site pour le Dental bisnabé
+C'est un site pour le Dental Bisnabé
 
 *C'est pour rettracer tout le parcours de notre groupe whatsap*
 
