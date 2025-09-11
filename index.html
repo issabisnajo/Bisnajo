@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dental Bisanbe — Site culturel</title>
+  <meta name="description" content="Dental Bisanbe : promouvoir la culture, la langue et la mémoire bisnabé. Événements, archives, initiatives et communauté." />
+  <meta property="og:title" content="Dental Bisanbe — Site culturel" />
+  <meta property="og:description" content="Promouvoir la culture, la langue et la mémoire bisnabé." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root{
+      --green:#1e7f3b;
+      --yellow:#f2c300;
+      --red:#cc1f2f;
+      --dark:#0f172a;
+      --text:#0b1020;
+      --muted:#5b6477;
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --radius:18px;
+      --shadow:0 8px 24px rgba(15,23,42,.08);
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";color:var(--text);background:var(--bg)}
+    a{color:var(--green);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--max);margin-inline:auto;padding:0 16px}
+    header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #eef0f5}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem}
+    .flag{display:inline-flex;overflow:hidden;border-radius:8px;border:1px solid #e6e8ee}
+    .f{width:10px;height:16px}
+    .f.green{background:var(--green)} .f.yellow{background:var(--yellow)} .f.red{background:var(--red)}
+    .menu{display:flex;gap:18px}
+    .menu a{padding:8px 10px;border-radius:10px}
+    .menu a:hover{background:#f0f3f9;text-decoration:none}
+    .burger{display:none;border:0;background:transparent;font-size:24px;cursor:pointer}
+    /* Hero */
+    .hero{position:relative;padding:72px 0;background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(30,127,59,.08),transparent 60%),
+      radial-gradient(900px 400px at 10% -10%, rgba(204,31,47,.08),transparent 60%)}
+    .hero h1{font-size:clamp(1.8rem,2.2rem + 1vw,3rem);line-height:1.1;margin:0}
+    .hero p{color:var(--muted);max-width:750px}
+    .cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;border:1px solid #e7e9f0;background:#fff;box-shadow:var(--shadow);font-weight:600}
+    .btn.primary{background:linear-gradient(90deg,var(--green),var(--yellow));color:#0d1b1a;border:0}
+    .tagline{margin-top:10px;font-weight:700;color:#0a1a19}
+    /* Sections */
+    section{padding:56px 0}
+    h2{font-size:1.6rem;margin:0 0 18px}
+    .grid{display:grid;gap:18px}
+    .cards{grid-template-columns:repeat(12,1fr)}
+    .card{background:var(--card);border:1px solid #eef0f5;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card h3{margin:0 0 8px;font-size:1.1rem}
+    .muted{color:var(--muted)}
+    /* About */
+    .about{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    .pill{display:inline-flex;gap:6px;align-items:center;border-radius:999px;padding:6px 10px;font-size:.9rem;border:1px solid #e9ecf2;background:#fff}
+    .list{display:grid;gap:8px;margin:0;padding-left:18px}
+    /* Events */
+    .event{display:flex;gap:14px;align-items:flex-start}
+    .date{min-width:80px;text-align:center;border-radius:12px;border:1px solid #e8ebf2;background:#fff;padding:8px 10px}
+    .date .d{font-weight:900;font-size:1.3rem}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#f1f5f9;border:1px solid #e8ebf2;font-size:.9rem}
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:14px;border:1px solid #eef0f5}
+    /* Contact */
+    form{display:grid;gap:10px}
+    input,textarea{padding:12px;border-radius:12px;border:1px solid #dfe4ee;background:#fff}
+    textarea{min-height:120px;resize:vertical}
+    .note{font-size:.9rem;color:var(--muted)}
+    /* Footer */
+    footer{padding:24px 0;border-top:1px solid #eef0f5;background:#fff;color:#3d475c}
+    .footer-grid{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+    .social{display:flex;gap:10px}
+    .dot{width:10px;height:10px;border-radius:999px;display:inline-block}
+    .dot.g{background:var(--green)} .dot.y{background:var(--yellow)} .dot.r{background:var(--red)}
+    /* Responsive */
+    @media (max-width:900px){
+      .about{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:720px){
+      .menu{display:none;flex-direction:column;padding:12px}
+      .menu.show{display:flex;backgro
