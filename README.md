@@ -5,4 +5,4 @@ C'est un site pour le dental bisnabé
 
 Année 2018/2025
 
-voici le lien de notre site web [ humanités Numerique](https://humanites-numeriques.univ-paris8.fr/)
+voici le lien de notre site web [humanités Numerique](https://humanites-numeriques.univ-paris8.fr/)
