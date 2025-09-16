@@ -1,343 +1,84 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dental Bisnaabé — Culture & Informations</title>
-  <meta name="description" content="Dental Bisnaabé : portail culturel et informationnel de la communauté. Actualités, événements, ressources et mémoire collective."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    :root{
-      --bg:#0b0f12; --card:#11161b; --muted:#7b8a97; --text:#ecf2f8;
-      --primary:#22c55e; /* vert principal */
-      --accent:#f59e0b;  /* jaune */
-      --red:#ef4444;     /* rouge pour tags */
-      --ring: 0 0 0 2px rgba(34,197,94,.25);
-      --radius:18px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
-    a{color:var(--primary);text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{width:min(1100px,92%);margin:auto}
-    /* Header */
-    header{position:sticky;top:0;background:rgba(11,15,18,.7);backdrop-filter:blur(10px);z-index:50;border-bottom:1px solid #1e293b}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .brand{display:flex;gap:10px;align-items:center}
-    .logo{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--primary)}
-    .brand h1{font-size:18px;margin:0}
-    .tagline{color:var(--muted);font-size:12px}
-    .menu{display:flex;gap:18px;align-items:center}
-    .menu a{padding:8px 12px;border-radius:10px;color:#cfe7d7}
-    .menu a:hover{background:#132016}
-    .cta{background:var(--primary);color:#05240f !important;font-weight:700}
-    .cta:hover{filter:brightness(1.05)}
-    .burger{display:none;font-size:22px}
-    @media (max-width:860px){
-      .menu{display:none}
-      .burger{display:block}
-    }
-    /* Mobile drawer */
-    #drawer{position:fixed;inset:0 0 0 auto;width:78%;max-width:360px;background:#0f151a;transform:translateX(105%);transition:.25s;box-shadow:-8px 0 30px rgba(0,0,0,.35);z-index:60;padding:18px}
-    #drawer.open{transform:none}
-    #drawer a{display:block;padding:12px;border-radius:12px;color:#cfe7d7}
-    #drawer a:hover{background:#15212a}
-    /* Hero */
-    .hero{padding:72px 0 40px;background:
-      radial-gradient(1200px 300px at 50% -20%, rgba(34,197,94,.18), transparent),
-      radial-gradient(900px 220px at 90% 10%, rgba(245,158,11,.14), transparent);
-    }
-    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
-    .hero h2{font-size:38px;line-height:1.1;margin:.1em 0 .4em}
-    .badge{display:inline-flex;gap:8px;align-items:center;font-size:12px;color:#10321d;background:#122518;border:1px solid #1e3a27;border-radius:999px;padding:6px 10px}
-    .hero p{color:#cbd5e1}
-    .pill-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .btn{display:inline-flex;gap:8px;align-items:center;padding:12px 16px;border-radius:12px;border:1px solid #21303a;background:#0f151a;color:#e5f3ea}
-    .btn.primary{background:linear-gradient(180deg,#2fe56f,#16a34a);border:0;color:#062b16;font-weight:800}
-    .btn:hover{box-shadow:var(--ring)}
-    .card{background:var(--card);border:1px solid #1f2a35;border-radius:var(--radius);padding:18px}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-    .stat{background:#0f151a;border:1px dashed #21303a;border-radius:14px;padding:14px;text-align:center}
-    .stat b{font-size:20px}
-    @logo.png (max-width:860px){.hero-grid{grid-template-columns:1fr}}
-    /* Sections */
-    section{padding:48px 0}
-    h3{font-size:26px;margin:0 0 14px}
-    .kicker{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-    @media (max-width:860px){.grid-3,.grid-2{grid-template-columns:1fr}}
-    .news .item,.event{display:flex;flex-direction:column;gap:10px}
-    .tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;border-radius:999px;border:1px solid #273340;padding:4px 10px;color:#cbd5e1}
-    .tag.red{border-color:#3a2222;color:#fecaca}
-    .meta{color:var(--muted);font-size:12px}
-    /* Gallery */
-    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-    .gallery img{border-radius:12px;border:1px solid #22303a;cursor:zoom-in;aspect-ratio:1/1;object-fit:cover}
-    @media (max-width:860px){.gallery{grid-template-columns:repeat(2,1fr)}}
-    /* Modal */
-    .modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:70}
-    .modal.open{display:flex}
-    .modal img{max-height:86vh;border-radius:16px;border:1px solid #334154}
-    /* Footer */
-    footer{padding:28px 0;border-top:1px solid #1e293b;color:#9fb2c2}
-    .footer-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:18px}
-    .small{font-size:12px;color:#93a4b4}
-    .input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #2a3b48;background:#0f151a;color:#e6f2ea}
-    .inline{display:flex;gap:10px}
-    .warning{background:#1f1414;border:1px solid #3b2222;color:#fca5a5;border-radius:12px;padding:10px}
-  </style>
-</head>
-<body>
-  <!-- Header -->
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <img class="logo" src="assets/dental-avatar.jpg" alt="Portrait fondateur Dental Bisnaabé" />
-        <div>
-          <h1>Dental Bisnaabé</h1>
-          <div class="tagline">Culture • Mémoire • Solidarité</div>
-        </div>
-      </div>
-      <nav class="menu" aria-label="Navigation principale">
-        <a href="#apropos">À propos</a>
-        <a href="#actus">Actualités</a>
-        <a href="#evenements">Événements</a>
-        <a href="#galerie">Galerie</a>
-        <a href="#ressources">Ressources</a>
-        <a href="#contact" class="cta"><i class="fa-brands fa-whatsapp"></i>&nbsp;Nous joindre</a>
-      </nav>
-      <button class="burger" aria-label="Ouvrir le menu" onclick="toggleDrawer()"><i class="fa-solid fa-bars"></i></button>
-    </div>
-  </header>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Issa SOW — Profil CV</title>
+<meta name="description" content="Profil CV en ligne de Issa SOW — Gestion stratégique de l'information, archives, GED." />
+<style>
+:root{
+--bg:#0b0f14; /* fond sombre élégant */
+--card:#10161d;
+--muted:#99a3ad;
+--text:#e6edf3;
+--brand:#19c37d; /* vert moderne */
+--accent:#f0b429; /* doré discret */
+--chip:#16212b;
+--chip-brd:#233240;
+--shadow:0 10px 30px rgba(0,0,0,.25);
+--radius:16px;
+--max:1080px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 15% -10%, #123, transparent),var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Segoe UI,Arial;}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
 
-  <!-- Drawer mobile -->
-  <aside id="drawer" aria-label="Menu mobile">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-      <strong>Menu</strong>
-      <button class="btn" onclick="toggleDrawer()"><i class="fa-solid fa-xmark"></i> Fermer</button>
-    </div>
-    <a href="#apropos" onclick="toggleDrawer()">À propos</a>
-    <a href="#actus" onclick="toggleDrawer()">Actualités</a>
-    <a href="#evenements" onclick="toggleDrawer()">Événements</a>
-    <a href="#galerie" onclick="toggleDrawer()">Galerie</a>
-    <a href="#ressources" onclick="toggleDrawer()">Ressources</a>
-    <a href="#contact" class="cta" onclick="toggleDrawer()">Nous joindre</a>
-  </aside>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <span class="badge"><i class="fa-solid fa-droplet"></i> Dental Bisnaabé — communauté & héritage</span>
-        <h2>“Chacun est libre de sa vision, dans le respect des droits des autres et des règles de l’art.”</h2>
-        <p>Portail officiel du groupe culturel Dental Bisnaabé : informations, histoire, actions solidaires, agenda et publications de la communauté.</p>
-        <div class="pill-actions">
-          <a class="btn primary" href="#actus"><i class="fa-regular fa-newspaper"></i> Dernières nouvelles</a>
-          <a class="btn" href="#evenements"><i class="fa-regular fa-calendar"></i> Agenda</a>
-          <a class="btn" href="#ressources"><i class="fa-solid fa-book-open"></i> Ressources</a>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="meta">Membres</div><b>150+</b></div>
-          <div class="stat"><div class="meta">Créé le</div><b>21/08/2017</b></div>
-          <div class="stat"><div class="meta">Champs d’action</div><b>Culture & Solidarité</b></div>
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/hero-photo.jpg" alt="Photo patrimoniale Dental Bisnaabé" style="border-radius:14px;border:1px solid #2a3b48">
-        <div class="small" style="margin-top:8px">Mettre ici votre image (ex : portrait ancien, cérémonie, village, etc.).</div>
-      </div>
-    </div>
-  </section>
+.wrap{max-width:var(--max);margin:auto;padding:24px}
 
-  <!-- À propos -->
-  <section id="apropos">
-    <div class="container grid-2">
-      <div class="card">
-        <div class="kicker">Identité</div>
-        <h3>Qui sommes-nous ?</h3>
-        <p>Dentale Bisnabé est un groupe de personnes d’une même famille/communauté aux visions diverses, unies par la culture, l’entraide et le respect. Nous promouvons la transmission intergénérationnelle, la langue, la mémoire orale, et les projets utiles (éducation, santé, environnement).</p>
-        <ul class="small">
-          <li>Pluralité des opinions & respect mutuel</li>
-          <li>Promotion de la culture et des savoir-faire</li>
-          <li>Initiatives solidaires & environnementales</li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="kicker">Charte</div>
-        <h3>Nos principes</h3>
-        <p class="small">Libre choix des idées, refus de toute discrimination, respect de la vie privée des membres, modération bienveillante, priorités aux actions utiles à la communauté.</p>
-        <div class="warning small"><i class="fa-solid fa-triangle-exclamation"></i> Contributions : évitez les contenus politiques conflictuels, privilégiez les informations vérifiées et les archives familiales (photos, témoignages).</div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Actualités -->
-  <section id="actus">
-    <div class="container">
-      <div class="kicker">Infos</div>
-      <h3>Actualités</h3>
-      <div class="grid-3 news">
-        <article class="item card">
-          <span class="tag"><i class="fa-regular fa-newspaper"></i> Communauté</span>
-          <h4>Campagne “Mémoire vivante”</h4>
-          <p>Collecte de photos, récits et proverbes auprès des aînés. Dépôt via WhatsApp ou e-mail. Publication mensuelle.</p>
-          <div class="meta">Publié le 05/09/2025 • <a href="#">Lire plus</a></div>
-        </article>
-        <article class="item card">
-          <span class="tag red"><i class="fa-solid fa-seedling"></i> Environnement</span>
-          <h4>Journée reboisement — Saison des pluies</h4>
-          <p>Mobilisation des jeunes pour planter 500 arbres autour des lieux de culte et écoles.</p>
-          <div class="meta">À Kolda & Ziguinchor • <a href="#">Détails</a></div>
-        </article>
-        <article class="item card">
-          <span class="tag"><i class="fa-solid fa-graduation-cap"></i> Éducation</span>
-          <h4>Bourses internes & soutien scolaire</h4>
-          <p>Mise en place d’un fonds d’entraide pour fournitures et frais d’examen. Appel aux parrains.</p>
-          <div class="meta">Contact: <a href="#contact">Comité éducation</a></div>
-        </article>
-      </div>
-    </div>
-  </section>
+header.hero{display:grid;grid-template-columns:112px 1fr;gap:18px;align-items:center;background:linear-gradient(180deg,rgba(25,195,125,.12),transparent 60%),var(--card);border:1px solid #1f2b36;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 18px}
+.photo{width:112px;height:112px;border-radius:14px;background:#0e141a url('https://api.iconify.design/solar/user-rounded-bold.svg?color=%23ffffff40') center/56px no-repeat;border:1px solid #24313d}
+.id h1{margin:0 0 6px;font-size:28px;letter-spacing:.3px}
+.id .role{margin:0 0 8px;font-weight:600;color:#d5ffe9}
+.id .tagline{margin:0;color:var(--muted)}
 
-  <!-- Événements -->
-  <section id="evenements">
-    <div class="container">
-      <div class="kicker">Agenda</div>
-      <h3>Événements à venir</h3>
-      <div class="grid-3">
-        <div class="event card">
-          <div class="meta"><i class="fa-regular fa-calendar"></i> 12 Oct • 15:00 — 18:00</div>
-          <h4>Causerie culturelle (Pulaar & FR)</h4>
-          <p>Poésie, récits de vie et archives orales. Lieu : Salle communautaire/visio.</p>
-        </div>
-        <div class="event card">
-          <div class="meta"><i class="fa-regular fa-calendar"></i> 26 Oct • 10:00</div>
-          <h4>Atelier généalogie & numérisation</h4>
-          <p>Apportez vos photos anciennes. Numérisation + indexation (GED simple).</p>
-        </div>
-        <div class="event card">
-          <div class="meta"><i class="fa-regular fa-calendar"></i> 09 Nov • 09:00</div>
-          <h4>Action santé & solidarité</h4>
-          <p>Dépistage, collecte de médicaments/ordonnances prioritaires.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Galerie -->
-  <section id="galerie">
-    <div class="container">
-      <div class="kicker">Mémoire</div>
-      <h3>Galerie</h3>
-      <div class="gallery">
-        <img src="Bisnajo/gal12.png" alt="Archive 1" onclick="openModal(this.src)">
-        <img src="assets/gal2.jpg" alt="Archive 2" onclick="openModal(this.src)">
-        <img src="assets/dental-avatar.jpg" alt="Archive 3" onclick="openModal(this.src)">
-        <img src="assets
-/ousmane.jpg" alt="Archive 4" onclick="openModal(this.src)">
-      </div>
-      <p class="small" style="margin-top:8px">Remplace les images dans <code>/assets</code>. Les noms de fichiers peuvent être modifiés librement.</p>
-    </div>
-  </section>
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;margin-top:24px}
 
-  <!-- Ressources -->
-  <section id="ressources">
-    <div class="container grid-2">
-      <div class="card">
-        <div class="kicker">Téléchargements</div>
-        <h3>Ressources</h3>
-        <ul>
-          <li><a href="#">Charte du groupe (PDF)</a></li>
-          <li><a href="#">Guide d’entretien d’archives familiales (PDF)</a></li>
-          <li><a href="#">Modèle consentement diffusion photos (DOCX)</a></li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="kicker">Newsletter</div>
-        <h3>Rester informé</h3>
-        <form onsubmit="event.preventDefault(); alert('Merci ! (Intégrer ensuite un service d’e-mailing)')">
-          <label class="small" for="email">Votre e-mail</label>
-          <div class="inline" style="margin-top:6px">
-            <input id="email" class="input" type="email" placeholder="nom@exemple.com" required />
-            <button class="btn primary" type="submit"><i class="fa-regular fa-paper-plane"></i> S’inscrire</button>
-          </div>
-          <p class="small">En vous inscrivant, vous acceptez de recevoir des infos de Dental Bisnaabé.</p>
-        </form>
-      </div>
-    </div>
-  </section>
 
-  <!-- Équipe / Contacts -->
-  <section id="contact">
-    <div class="container grid-3">
-      <div class="card">
-        <div class="kicker">Gouvernance</div>
-        <h3>Comité de coordination</h3>
-        <ul class="small">
-          <li>Coordination générale — <em>Nom & contact</em></li>
-          <li>Culture & Mémoire — <em>Nom & contact</em></li>
-          <li>Éducation & Jeunesse — <em>Nom & contact</em></li>
-          <li>Solidarité & Santé — <em>Nom & contact</em></li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="kicker">Nous écrire</div>
-        <h3>Contacts</h3>
-        <p class="small">E-mail : <a href="mailto:contact@dental-bisnabe.org">contact@dental-bisnabe.org</a><br>
-          WhatsApp : <a href="https://wa.me/221000000000" target="_blank" rel="noopener">+221 xx xxx xx xx</a></p>
-        <div class="pill-actions">
-          <a class="btn" href="https://wa.me/221000000000" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Écrire sur WhatsApp</a>
-          <a class="btn" href="mailto:contact@dental-bisnabe.org"><i class="fa-regular fa-envelope"></i> Envoyer un e-mail</a>
-        </div>
-      </div>
-      <div class="card">
-        <div class="kicker">Transparence</div>
-        <h3>Finances & rapports</h3>
-        <p class="small">Publication annuelle des activités, budget, et bilan des actions. <a href="#">Voir le dernier rapport</a>.</p>
-      </div>
-    </div>
-  </section>
+.card{background:var(--card);border:1px solid #1f2b36;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.card h2{margin:0 0 12px;font-size:18px;letter-spacing:.3px}
 
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-grid">
-      <div>
-        <strong>Dental Bisnaabé</strong>
-        <p class="small">Portail culturel & informationnel de la communauté. © <span id="year"></span> — Tous droits réservés.</p>
-      </div>
-      <div>
-        <div class="small">Liens rapides</div>
-        <ul class="small">
-          <li><a href="#apropos">À propos</a></li>
-          <li><a href="#actus">Actualités</a></li>
-          <li><a href="#evenements">Événements</a></li>
-          <li><a href="#ressources">Ressources</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="small">Réseaux</div>
-        <p class="small">
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i> Facebook</a><br>
-          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i> YouTube</a><br>
-          <a href="#" aria-label="X/Twitter"><i class="fa-brands fa-x-twitter"></i> X</a>
-        </p>
-      </div>
-    </div>
-  </footer>
 
-  <!-- Modal -->
-  <div class="modal" id="modal" onclick="closeModal()">
-    <img id="modalImg" alt="Agrandissement image">
-  </div>
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;gap:8px;align-items:center;padding:8px 10px;border-radius:999px;background:var(--chip);border:1px solid var(--chip-brd);font-size:13px;color:#cfe7da}
+.chip svg{width:16px;height:16px;opacity:.9}
 
-  <script>
-    const year = document.getElementById('year'); year.textContent = new Date().getFullYear();
-    function toggleDrawer(){ document.getElementById('drawer').classList.toggle('open'); }
-    function openModal(src){ const m=document.getElementById('modal'); document.getElementById('modalImg').src=src; m.classList.add('open'); }
-    function closeModal(){ document.getElementById('modal').classList.remove('open'); }
-  </script>
-</body>
+
+.xp{display:flex;flex-direction:column;gap:14px}
+.xp-item{display:grid;grid-template-columns:140px 1fr;gap:14px}
+.xp-time{color:var(--muted);font-size:13px}
+.xp-role{font-weight:700}
+.xp-org{color:#cfe7da}
+.xp p{margin:6px 0 0}
+.bullet{display:flex;gap:10px}
+.bullet::before{content:"•";color:var(--accent)}
+
+
+.list{display:grid;gap:10px}
+
+
+.contact{display:grid;gap:10px}
+.contact a{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid #233240;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);}
+
+
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid #1f2b36;background:#0f151b;color:var(--text)}
+.btn.primary{background:linear-gradient(180deg,rgba(25,195,125,.2),rgba(25,195,125,.06));border-color:#1b2c22}
+
+
+footer{margin:18px 0;color:var(--muted);font-size:13px}
+
+
+@media (max-width:900px){
+.grid{grid-template-columns:1fr}
+.xp-item{grid-template-columns:1fr}
+header.hero{grid-template-columns:80px 1fr}
+.photo{width:80px;height:80px}
+}
+
+
+/* Impression A4 propre */
 </html>
