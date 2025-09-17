@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Issa SOW — Profil CV</title>
+<meta name="description" content="Profil CV en ligne de Issa SOW — Gestion stratégique de l'information, archives, GED." />
+<style>
+:root{
+--bg:#0b0f14; /* fond sombre élégant */
+--card:#10161d;
+--muted:#99a3ad;
+--text:#e6edf3;
+--brand:#19c37d; /* vert moderne */
+--accent:#f0b429; /* doré discret */
+--chip:#16212b;
+--chip-brd:#233240;
+--shadow:0 10px 30px rgba(0,0,0,.25);
+--radius:16px;
+--max:1080px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 15% -10%, #123, transparent),var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Segoe UI,Arial;}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
 
+
+.wrap{max-width:var(--max);margin:auto;padding:24px}
+
+
+header.hero{display:grid;grid-template-columns:112px 1fr;gap:18px;align-items:center;background:linear-gradient(180deg,rgba(25,195,125,.12),transparent 60%),var(--card);border:1px solid #1f2b36;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 18px}
+.photo{width:112px;height:112px;border-radius:14px;background:#0e141a url('https://api.iconify.design/solar/user-rounded-bold.svg?color=%23ffffff40') center/56px no-repeat;border:1px solid #24313d}
+.id h1{margin:0 0 6px;font-size:28px;letter-spacing:.3px}
+.id .role{margin:0 0 8px;font-weight:600;color:#d5ffe9}
+.id .tagline{margin:0;color:var(--muted)}
+
+
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;margin-top:24px}
+
+
+.card{background:var(--card);border:1px solid #1f2b36;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.card h2{margin:0 0 12px;font-size:18px;letter-spacing:.3px}
+
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;gap:8px;align-items:center;padding:8px 10px;border-radius:999px;background:var(--chip);border:1px solid var(--chip-brd);font-size:13px;color:#cfe7da}
+.chip svg{width:16px;height:16px;opacity:.9}
+
+
+.xp{display:flex;flex-direction:column;gap:14px}
+.xp-item{display:grid;grid-template-columns:140px 1fr;gap:14px}
+.xp-time{color:var(--muted);font-size:13px}
+.xp-role{font-weight:700}
+.xp-org{color:#cfe7da}
+.xp p{margin:6px 0 0}
+.bullet{display:flex;gap:10px}
+.bullet::before{content:"•";color:var(--accent)}
+
+
+.list{display:grid;gap:10px}
+
+
+.contact{display:grid;gap:10px}
+.contact a{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid #233240;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);}
+
+
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid #1f2b36;background:#0f151b;color:var(--text)}
+.btn.primary{background:linear-gradient(180deg,rgba(25,195,125,.2),rgba(25,195,125,.06));border-color:#1b2c22}
+
+
+footer{margin:18px 0;color:var(--muted);font-size:13px}
+
+
+@media (max-width:900px){
+.grid{grid-template-columns:1fr}
+.xp-item{grid-template-columns:1fr}
+header.hero{grid-template-columns:80px 1fr}
+.photo{width:80px;height:80px}
+}
+
+
+/* Impression A4 propre */
+</html>
